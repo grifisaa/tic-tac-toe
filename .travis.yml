@@ -19,6 +19,6 @@ script:
   - sudo docker build -t grifisaa/ttt:1.0 .
 
 deploy:
-  provider: script
-  script: bash docker_push
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push grifisaa/ttt:1.0
 
