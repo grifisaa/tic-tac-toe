@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'tic-tac-toe'
-include('app', 'list', 'utilities')
+include('client', 'server', 'library')
