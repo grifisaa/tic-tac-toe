@@ -8,7 +8,6 @@ services:
   - docker
 
 script:
-  - jdk_switcher use openjdk10
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/openjdk17
@@ -17,8 +16,6 @@ script:
   - ./gradlew assemble
   - cd server
   - sudo docker build -t grifisaa/ttt:1.0 .
-
-deploy:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push grifisaa/ttt:1.0
 
