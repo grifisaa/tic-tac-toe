@@ -26,6 +26,6 @@ public class StatusHandler extends BaseGetHandler {
 
     @Override
     public Object getMessage() {
-        return "Up and Running";
+        return "Good To Go!";
     }
 }
