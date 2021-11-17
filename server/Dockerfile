@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-oraclelinux8
 
 # Arguments
-ARG port=7000
+ARG PORT=7000
 
 # set the maintainer
 MAINTAINER "Isaac D. Griffith"
@@ -13,9 +13,6 @@ WORKDIR ./
 # copy components
 COPY ./build/distributions/server.zip ./server.zip
 
-# create the user so root is not running the app
-#USER appuser
-
 # Install dependencies
 RUN microdnf install zip unzip -y
 
@@ -23,7 +20,11 @@ RUN microdnf install zip unzip -y
 RUN unzip server.zip
 
 # expose the networking port
-EXPOSE $port
+EXPOSE $PORT
+
+# create the user so root is not running the app
+RUN useradd -m appuser
+USER appuser
 
 # Setup the entrypoint
-ENTRYPOINT ./server/bin/server
+ENTRYPOINT ./server/bin/server -p $PORT
