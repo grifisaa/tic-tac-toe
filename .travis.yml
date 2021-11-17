@@ -31,7 +31,7 @@ script:
 
 deploy:
   - provider: script
-    script: bash dh_docker_push.sh
+    script: bash $TRAVIS_BUILD_DIR/server/dh_docker_push.sh
     on:
       branch: develop
 #  - provider: script
