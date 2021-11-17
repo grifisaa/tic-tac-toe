@@ -24,9 +24,10 @@ deploy:
     api_key:
       secure: dlDFdpPDMZ8aEhdaBoTJR2KXilhLEDeJkhM9TzJNf1y3YCTj7OpDmBIRa1SyTYnWVlIhwW7pJeJteKSY7kc+0tJ1GcjSJjUOh/8gYcuXalilGsq5qNpvhxuZupOjUxGLL8ECVJdMy8V7wbEkqmxmBj0ziyb4z9T0FSXD7DQezgzKACE4K0JS+lXJMGy2J0383uQ7bJgSllbeaM5tHIMmtY01Qro1+QDzSf9mlyJZQtOMPlDUmdTLbr+NIL5ZHWYOzMgtUU8eoEaJfSPh/akkGVgpgAHxdJ76/wL6sNQe81YLQ3Zht2pc+5sJRsdMAfH8+AqFRsJHn2nRtuIIp6mDFsTCZCqDJstrFTqrlf1r1V7imcINGDRztxtK7GT8Ckx+DRlTYefY+mFVjnlJbIPvk8gViwNtH2tlQm5D0RT4cUFzX6YADbGwXq5WBVoSS4hgN/r2FlDve4JZM2MUV1IGnPB1m1Qj8L98TOjlPf0Cyb0K9ecAa0Vw4Ge40i7ewGCeSLP1O8ojCfA7p4OBoyC8nB5pY+qiahcvWpPitcLUdS1IIaFGBTa87KJXNalDF+lHwMiTxKtj3l+F5b5JoOdWDBu1SCXTQ5ZSxV6+4s/iT1+S+sQJGKV2RKIoveWBZXmioy5pSU1Vzwtckf6KtPOq6NLe4erTHO8vPn0ti0jOKmc=
     run:
-    - docker login --username=_ --password=$(heroku auth:token) registry.heroku.com
-    - docker tag tictactoe registry.heroku.com/grifisaa-tictactoe/web
-    - docker push registry.heroku.com/grifisaa-tictactoe/web
-    - heroku container:release web
+      - heroku container:login
+      - docker login --username=_ --password=$(heroku auth:token) registry.heroku.com
+      - docker tag tictactoe registry.heroku.com/grifisaa-tictactoe/web
+      - docker push registry.heroku.com/grifisaa-tictactoe/web
+      - heroku container:release web
     on:
       branch: develop
