@@ -17,6 +17,8 @@ script:
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/openjdk17
   - $TRAVIS_BUILD_DIR/install-jdk.sh -F 17 --target $JAVA_HOME
+  - rm install-jdk.sh
+  - rm jdk.tar.gz
   - chmod +x gradlew
   - ./gradlew assemble
   - cd server
