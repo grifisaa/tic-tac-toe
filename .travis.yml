@@ -27,5 +27,5 @@ script:
 - "./gradlew assemble"
 - cd server
 after_success:
-  - aws_docker_push.sh
-  - ecs_deploy.sh
+  - ./aws_docker_push.sh
+  - ./ecs_deploy.sh
