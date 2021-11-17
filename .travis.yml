@@ -1,3 +1,4 @@
+sudo: required
 language: java
 install: skip
 
@@ -7,6 +8,20 @@ dist: focal
 services:
   - docker
 
+env:
+  global:
+    - DOCKER_REPO=
+    - EB_REGION="us-east-2"
+    - secure: travisEncryptedAWS_ACCOUNT_ID
+    - secure: travisEncryptedAWS_ACCESS_KEY_ID
+    - secure: travisEncryptedAWS_SECRET_ACCESS_KEY
+    - secure: travisEncryptedDOCKER_USERNAME
+    - secure: travisEncryptedDOCKER_PASSWORD
+
+before_install:
+  - pip install awscli
+  - export PATH=$PATH:$HOME/.local/bin
+
 script:
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
@@ -15,7 +30,14 @@ script:
   - chmod +x gradlew
   - ./gradlew assemble
   - cd server
-  - sudo docker build -t grifisaa/ttt:1.0 .
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push grifisaa/ttt:1.0
+  - sudo docker build -t tictactoe .
 
+deploy:
+  - provider: script
+    script: bash dh_docker_push.sh
+    on:
+      branch: develop
+  - provider: script
+    script: bash aws_docker_push.sh
+    on:
+      branch: develop
