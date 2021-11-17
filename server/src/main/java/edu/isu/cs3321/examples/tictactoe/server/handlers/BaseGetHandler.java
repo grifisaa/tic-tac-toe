@@ -19,6 +19,7 @@ package edu.isu.cs3321.examples.tictactoe.server.handlers;
 import edu.isu.cs3321.examples.tictactoe.server.ServerContext;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
+import org.eclipse.jetty.http.HttpStatus;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class BaseGetHandler implements Handler {
@@ -31,6 +32,7 @@ public abstract class BaseGetHandler implements Handler {
 
     @Override
     public void handle(@NotNull Context ctx) throws Exception {
+        ctx.res.setStatus(HttpStatus.OK_200);
         ctx.json(getMessage());
     }
 

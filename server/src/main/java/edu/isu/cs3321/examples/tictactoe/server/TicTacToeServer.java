@@ -16,14 +16,17 @@
  */
 package edu.isu.cs3321.examples.tictactoe.server;
 
-import edu.isu.cs3321.examples.tictactoe.library.Game;
 import edu.isu.cs3321.examples.tictactoe.server.handlers.*;
 import io.javalin.Javalin;
 import lombok.Getter;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 
-import static io.javalin.apibuilder.ApiBuilder.*;
+import java.net.Inet4Address;
+import java.net.NetworkInterface;
+
+import static io.javalin.apibuilder.ApiBuilder.get;
+import static io.javalin.apibuilder.ApiBuilder.post;
 
 public class TicTacToeServer {
 
@@ -55,6 +58,8 @@ public class TicTacToeServer {
         CLI.INST.init();
         CLI.INST.parseArgs(args);
 
-        new TicTacToeServer().getApp().start(CLI.INST.getPort());
+        try {
+            new TicTacToeServer().getApp().start(CLI.INST.getPort());
+        } catch (Exception e) {}
     }
 }
