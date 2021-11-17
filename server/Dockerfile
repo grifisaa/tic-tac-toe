@@ -27,4 +27,4 @@ RUN useradd -m appuser
 USER appuser
 
 # Setup the entrypoint
-ENTRYPOINT ./server/bin/server -p $PORT
+ENTRYPOINT ./server/bin/server
