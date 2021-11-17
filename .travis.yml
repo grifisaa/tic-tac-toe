@@ -5,7 +5,7 @@ os: linux
 dist: focal
 env:
   global:
-  - AWS_URL=public.ecr.aws/n8n1j8s6/tictactoe
+  - AWS_URL=public.ecr.aws/n8n1j8s6
   - LIVE_SERVICE=tictactoe
   - LIVE_CLUSTER_NAME=tictactoe-cluster
   - LIVE_APP_NAME=tictactoe
