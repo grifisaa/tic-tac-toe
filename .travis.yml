@@ -36,4 +36,4 @@ after_success:
   - docker tag "$LIVE_APP_NAME:latest" "$AWS_URL/$LIVE_APP_NAME:latest"
   - docker push "$AWS_URL/$LIVE_APP_NAME:$TRAVIS_COMMIT"
   - docker push "$AWS_URL/$LIVE_APP_NAME:latest"
-  - ./ecs_deploy.sh
+  - server/ecs_deploy.sh
