@@ -12,6 +12,11 @@ before_install:
   - pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
 
+#env:
+#  global:
+#    - secure: DOCKER_PASSWORD
+#    - secure: DOCKER_USERNAME
+
 script:
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
@@ -29,7 +34,7 @@ deploy:
     script: bash dh_docker_push.sh
     on:
       branch: develop
-  - provider: script
-    script: bash aws_docker_push.sh
-    on:
-      branch: develop
+#  - provider: script
+#    script: bash aws_docker_push.sh
+#    on:
+#      branch: develop
