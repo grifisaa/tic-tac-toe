@@ -8,16 +8,6 @@ dist: focal
 services:
   - docker
 
-env:
-  global:
-    - DOCKER_REPO=
-    - EB_REGION="us-east-2"
-    - secure: travisEncryptedAWS_ACCOUNT_ID
-    - secure: travisEncryptedAWS_ACCESS_KEY_ID
-    - secure: travisEncryptedAWS_SECRET_ACCESS_KEY
-    - secure: travisEncryptedDOCKER_USERNAME
-    - secure: travisEncryptedDOCKER_PASSWORD
-
 before_install:
   - pip install awscli
   - export PATH=$PATH:$HOME/.local/bin
